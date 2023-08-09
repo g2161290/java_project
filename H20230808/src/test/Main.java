@@ -5,27 +5,33 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
-		int N=sc.nextInt();
-		int M=sc.nextInt();
-		int n[]= new int [N];
-		for(int i=0;i<N;i++) {
-			n[i]=0;
+		int n=sc.nextInt();
+		int m=sc.nextInt();
+		int N[]=new int [n];
+		for(int i=0; i<n;i++) {
+			N[i]=i+1;
 		}
-		for(int a=0;a<M;a++) {
+		for(int a=0; a<m;a++) {
 			int i=sc.nextInt();
 			int j=sc.nextInt();
-			int k=sc.nextInt();
-			for(int b=i-1; b<j;b++) {
-				n[b]=k;
+			int b=i;
+			int c=j;
+			for(b=i;b<=j;b++) {
+				int I=N[b-1];
+				N[c-1]=I;	
+				c--;
+				}
+				
 			}
+		String result="";
+		for(int i=0; i<n; i++) {
+			result+=N[i]+" ";
 		}
-		String r="";
-		for(int i=0; i<N;i++) {
-			r+=n[i]+" ";
-		}
-		System.out.println(r);
+		System.out.println(result);
 	}
-	
+		
 }
+	
+
 
 
