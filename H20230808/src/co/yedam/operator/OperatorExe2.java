@@ -22,7 +22,6 @@ public class OperatorExe2 {
 					balance-=money;
 					System.out.println("입금 불가");
 				}
-				
 			} else if(menu == 2) {
 				System.out.println("출금액 입력 >>");
 				int money=Integer.parseInt(scn.nextLine());
@@ -43,3 +42,5 @@ public class OperatorExe2 {
 	}
 	
 }
+balance= balance-money;
+blance-=money;
