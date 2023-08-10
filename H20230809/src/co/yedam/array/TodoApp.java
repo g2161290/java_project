@@ -19,17 +19,54 @@ public class TodoApp {
 			switch(menu) {
 				case 1: 
 					System.out.print("목록수> ");
-					todo[]=new Todo[Integer.parseInt(sc.nextLine())];
+					todo=new Todo[Integer.parseInt(sc.nextLine())];
 					for(int i=0;i<todo.length;i++) {
-					System.out.println("순번과 할일 날짜를 입력하세요.");
-					String [] data =scanner.nextLine().split(" ");	
-					Todo t=new Todo();
-					t.no=Integer.parseInt(data[0]);
-					t.todo=data[1];
-					t.dueDate=data[2];
-					t.done=false;
+						System.out.println("순번과 할일 날짜를 입력하세요.");
+						String [] data =sc.nextLine().split(" ");	
+						Todo t=new Todo();
+						t.no=Integer.parseInt(data[0]);
+						t.todo=data[1];
+						t.dueDate=data[2];
+						t.done=false;
+						todo[i]=t;
 					}
-					
+					break;
+				case 2:
+					System.out.print("완료한 일> ");
+					String [] data =sc.nextLine().split(" ");
+					for(int i=0;i<data.length;i++) {
+						for(int j=0; j<todo.length;j++) {
+							if(Integer.parseInt(data[i])==todo[j].no) {
+								todo[j].done=true;
+							}
+						}
+						
+					}
+					break;
+				case 3:
+					for(int i=0;i<todo.length-1;i++) {
+						for(int j=i;j<todo.length;j++) {
+							if(todo[i].no>todo[j].no) {
+								Todo k=todo[i];
+								todo[i]=todo[j];
+								todo[j]=k;
+							}
+						}
+					}
+					for(int i=0; i<todo.length;i++) {
+						System.out.println("할일 : "+todo[i].todo+" 마감일 : "+todo[i].dueDate);
+					}
+					break;
+				case 4:
+					for(int i=0;i<todo.length;i++) {
+						if(!todo[i].done) {
+							System.out.println("할일 : "+todo[i].todo+" 마감일 : "+todo[i].dueDate);
+						}
+					}
+					break;
+				case 5:
+					System.out.println("종료합니다.");
+					break;
 			}
 		}
 	}
