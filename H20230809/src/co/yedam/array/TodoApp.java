@@ -45,7 +45,7 @@ public class TodoApp {
 					break;
 				case 3:
 					for(int i=0;i<todo.length-1;i++) {
-						for(int j=i;j<todo.length;j++) {
+						for(int j=i+1;j<todo.length;j++) {
 							if(todo[i].no>todo[j].no) {
 								Todo k=todo[i];
 								todo[i]=todo[j];
