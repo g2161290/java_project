@@ -8,7 +8,7 @@ public class BoardApp {
 		Board[] boards = new Board[10];
 		boolean run = true;
 		while(run) {
-			System.out.println("1.등록 2.목록 3.상세보기 4.수정 5. 삭제 6.종료");
+			System.out.println("1.등록 2.목록 3.상세보기 4.수정 5.삭제 6.종료");
 			System.out.println("선택>> ");
 			int menu = Integer.parseInt(sc.nextLine());
 			switch(menu) {
