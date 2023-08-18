@@ -1,5 +1,6 @@
 package co.yedam.friend;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FriendApp {
@@ -10,11 +11,20 @@ public class FriendApp {
 	//컨트롤
 	public void start() {
 		boolean run=true;
+		int menu = -1;
 		while(run) {
 			System.out.println("1.추가 2.조회 3.수정 4.삭제 5.종료");
 			System.out.println("선택>> ");
-			int menu=sc.nextInt();
-			sc.nextLine();
+			
+			try {
+			menu=sc.nextInt();	
+			} catch (InputMismatchException e) {
+//				System.out.println("메뉴를 다시 선택하세요");
+//				continue;
+			} finally {
+				sc.nextLine();
+			}
+			
 			switch(menu) {
 			case 1:
 				addFriend();
@@ -43,24 +53,38 @@ public class FriendApp {
 	}
 	//등록
 	private void addFriend() {
-		System.out.println("1.학교 2.회사 3.기타");
-		System.out.println("선택>> ");
-		int subMenu = sc.nextInt();
-		sc.nextLine();
-		Friend friend=null;
-		String name=printString("이름입력");
-		String phone=printString("연락처입력");
-		if(subMenu==1) {
-			String univ=printString("학교입력");
-			String major=printString("전공입력");
-			friend=new UnivFriend(name, phone, univ, major);
-		} else if(subMenu==2) {
-			String comp=printString("회사입력");
-			String dept=printString("부서입력");
-			friend=new CompFriend(name, phone, comp, dept);
-		} else {
-			friend=new Friend(name, phone);
+		int subMenu=-1;
+		while(true){
+			System.out.println("1.학교 2.회사 3.기타");
+			System.out.println("선택>> ");
+			try {
+				subMenu = sc.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("메뉴를 다시 선택하세요.");
+				continue;
+			} finally {
+				sc.nextLine();
+			}
+			if(subMenu!=1&&subMenu!=2&&subMenu!=3) {
+				System.out.println("메뉴를 다시 선택하세요.");
+				continue;
+			}
+			break;
 		}
+		Friend friend=null;
+			String name=printString("이름입력");
+			String phone=printString("연락처입력");
+			if(subMenu==1) {
+				String univ=printString("학교입력");
+				String major=printString("전공입력");
+				friend=new UnivFriend(name, phone, univ, major);
+			} else if(subMenu==2) {
+				String comp=printString("회사입력");
+				String dept=printString("부서입력");
+				friend=new CompFriend(name, phone, comp, dept);
+			} else{
+				friend=new Friend(name, phone);
+			}
 		
 		//
 		for(int i=0;i<friends.length;i++) {
