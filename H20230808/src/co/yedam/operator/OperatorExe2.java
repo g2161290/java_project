@@ -42,5 +42,3 @@ public class OperatorExe2 {
 	}
 	
 }
-balance= balance-money;
-blance-=money;
