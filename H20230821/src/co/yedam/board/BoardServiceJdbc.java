@@ -25,7 +25,8 @@ public class BoardServiceJdbc implements BoardService{
 	}
 	private int getMaxNo() {
 		int brdNo=0;
-		query="select max(co from board";
+		query=" select max(brd_no)\r\n"
+				+ " from board;";
 		conn=Dao.conn();
 		try {
 			psmt = conn.prepareStatement(query);
