@@ -20,26 +20,31 @@ public class BoardServiceJdbc implements BoardService{
 	
 	@Override
 	public boolean add(Board board) {
-		query= "insert into board (brd_no,brd_title,brd_content,brd_writer) values(";
-		return false;
-	}
-	private int getMaxNo() {
-		int brdNo=0;
-		query=" select max(brd_no)\r\n"
-				+ " from board;";
+		query= "insert into board (brd_no,brd_title,brd_content,brd_writer) values("+getMaxNo()+","+board.getBrdTitle()+","+board.getBrdContent()+","+board.getBrdWriter()+")";
 		conn=Dao.conn();
 		try {
 			psmt = conn.prepareStatement(query);
-			rs=psmt.executeQuery();
-			int brdSize =rs.getInt("");
-			for(int i=0; i<brdSize;i++) {
-				if(boardList.get(i).getBrdNo() >brdNo) {
-					brdNo=boardList.get(i).getBrdNo();
-				}
+			int r =psmt.executeUpdate();
+			if(r==1) {
+				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
+	}
+	private int getMaxNo() {
+		int brdNo=0;
+		conn=Dao.conn();
+		query="select max(brd_no) from board";
+		try {
+			psmt = conn.prepareStatement(query);
+			rs=psmt.executeQuery();
+			brdNo =Integer.parseInt(rs.getString("max(brd_no)"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return brdNo+1;
 	}
 	@Override
 	public List<Board> list(int page) {
