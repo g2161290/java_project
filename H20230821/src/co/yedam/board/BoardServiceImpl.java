@@ -109,5 +109,22 @@ public class BoardServiceImpl implements BoardService{
 	public double getTotal() {
 		return boardList.size();
 	}
+	@Override
+	public String getResponseUser(int brdNo) {
+		for(int i=0;i<boardList.size(); i++) {
+			if(boardList.get(i).getBrdNo()==brdNo) {
+				return boardList.get(i).getBrdWriter();
+			}
+		}
+		return null;
+	}
+	public Board boardInfo(int brdNo) {
+		for(int i=0;i<boardList.size(); i++) {
+			if(boardList.get(i).getBrdNo()==brdNo) {
+				return boardList.get(i);
+			}
+		}
+		return null;
+	}
 
 }

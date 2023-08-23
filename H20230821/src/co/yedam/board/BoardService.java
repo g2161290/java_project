@@ -22,4 +22,9 @@ public interface BoardService {
 	
 	// 종료.
 	public void save();
+	
+	//글번호 -작성자 반환.
+	public String getResponseUser(int brdNo);
+	
+	public Board boardInfo(int brdNo);
 }
