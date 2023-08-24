@@ -1,7 +1,17 @@
-package co.yedam.board;
+package co.yedam.board.control;
 
 import java.util.List;
 import java.util.Scanner;
+
+import co.yedam.board.service.BoardService;
+import co.yedam.board.service.BoardServiceJdbc;
+import co.yedam.board.service.ReplyService;
+import co.yedam.board.service.ReplyServiceImpl;
+import co.yedam.board.service.UserService;
+import co.yedam.board.service.UserServiceJdbc;
+import co.yedam.board.vo.Board;
+import co.yedam.board.vo.Reply;
+import co.yedam.board.vo.User;
 
 public class BoardApp {
 
@@ -110,7 +120,7 @@ public class BoardApp {
 			Board brd = new Board();
 			int brdNo = Integer.parseInt(printString("번호입력"));
 			
-			if(!service.getResponseUser(brdNo).equals(id)) {
+			if(service.getResponseUser(brdNo)!=null&&!service.getResponseUser(brdNo).equals(id)) {
 				System.out.println("권한 없음");
 				break;
 			}
@@ -185,7 +195,7 @@ public class BoardApp {
 					remove();
 					break;
 				case 3:
-					
+					list();
 					break;
 				case 9:
 					rservice.save();
@@ -212,7 +222,6 @@ public class BoardApp {
 			}
 		}
 		void list() {
-			System.out.println(result.showInfo());
 			List<Reply> rplist= rservice.list(brdNo);
 			for(Reply r: rplist) {
 				System.out.println(r.listInfo()); 

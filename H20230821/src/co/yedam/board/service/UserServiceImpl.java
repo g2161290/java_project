@@ -1,4 +1,4 @@
-package co.yedam.board;
+package co.yedam.board.service;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import co.yedam.board.vo.User;
 
 public class UserServiceImpl implements UserService{
 	

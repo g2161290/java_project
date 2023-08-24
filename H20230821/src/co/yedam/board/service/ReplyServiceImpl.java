@@ -1,4 +1,4 @@
-package co.yedam.board;
+package co.yedam.board.service;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import co.yedam.board.vo.Reply;
 
 public class ReplyServiceImpl implements ReplyService{
 
@@ -18,7 +20,7 @@ public class ReplyServiceImpl implements ReplyService{
 	
 	private void init() {
 		try {
-			FileInputStream fis=new FileInputStream("c:/temp/reply.dat");
+			FileInputStream fis=new FileInputStream("c:/temp/reply.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			replyList=(List<Reply>) ois.readObject();
 			ois.close();
@@ -66,7 +68,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void save() {
 		try {
-			FileOutputStream fos=new FileOutputStream("C:/temp/reply.dat");
+			FileOutputStream fos=new FileOutputStream("C:/temp/reply.txt");
 			ObjectOutputStream oos=new ObjectOutputStream(fos);
 			oos.writeObject(replyList);
 			oos.flush();

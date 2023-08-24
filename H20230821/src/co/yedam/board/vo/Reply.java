@@ -1,10 +1,15 @@
-package co.yedam.board;
+package co.yedam.board.vo;
 
-public class Reply {
+import java.io.Serializable;
+
+public class Reply implements Serializable{
 	private int rpNo;
 	private int brdNo;
 	private String rpContent;
 	private String rpWriter;
+	public Reply() {
+		
+	}
 	public Reply(int brdNo, String rpContent, String rpWriter) {
 		super();
 		this.brdNo = brdNo;
