@@ -14,8 +14,8 @@ public class SendMail {
 	final String ENCODING = "UTF-8";
 	final String PORT = "465";
 	final String SMTPHOST = "smtp.naver.com";
-	final String FROM = "g2161290@naver.com";
-	final String PASS = "qhch9251";
+	final String FROM = "id";
+	final String PASS = "password";
 
 	public Session setting() {
 		Properties props = new Properties();
